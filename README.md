@@ -1,2 +1,1 @@
-# SoftwareRasterizer
-
+A versatile software rasterizer.
