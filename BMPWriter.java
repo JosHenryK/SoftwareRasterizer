@@ -2,16 +2,6 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-class float3 {
-    public float x, y, z;
-
-    public float3(float x, float y, float z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-}
-
 public class BMPWriter {
     public static float3[][] createTestImage(int width, int height) {
         float3[][] image = new float3[width][height];
@@ -71,11 +61,6 @@ public class BMPWriter {
     }
 
     public static void main(String[] args) throws IOException {
-        int width = 64, height = 64;
-
-        float3[][] image = createTestImage(width, height);
-
-        writeImageToBMP(image, "test_image");
-        //System.out.println("BMP image written to test_image.bmp");
+        
     }
 }
