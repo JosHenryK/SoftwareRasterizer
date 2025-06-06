@@ -2,54 +2,30 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-class Float3 {
+class float3 {
     public float x, y, z;
 
-    public Float3(float x, float y, float z) {
+    public float3(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
-
-    public float getR() {
-        return x;
-    }
-    
-    public float getG() {
-        return y;
-    }
-
-    public float getB() {
-        return z;
-    }
-
-    public void setR(float r) {
-        x = r;
-    }
-
-    public void setG(float g) {
-        y = g;
-    }
-
-    public void setB(float b) {
-        z = b;
-    }
 }
 
 public class BMPWriter {
-    public static Float3[][] createTestImage(int width, int height) {
-        Float3[][] image = new Float3[width][height];
+    public static float3[][] createTestImage(int width, int height) {
+        float3[][] image = new float3[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 float r = x / (float)(width - 1);
                 float g = y / (float)(height - 1);
-                image[x][y] = new Float3(r, g, 0f);
+                image[x][y] = new float3(r, g, 0f);
             }
         }
         return image;
     }
 
-    public static void writeImageToBMP(Float3[][] image, String filename) throws IOException {
+    public static void writeImageToBMP(float3[][] image, String filename) throws IOException {
         int width = image.length;
         int height = image[0].length;
         int rowSize = ((24 * width + 31) / 32) * 4;
@@ -79,10 +55,10 @@ public class BMPWriter {
             // --- Pixel Data (bottom-up BGR format) ---
             for (int y = height - 1; y >= 0; y--) {
                 for (int x = 0; x < width; x++) {
-                    Float3 col = image[x][y];
-                    out.writeByte((int)(col.getB() * 255)); // Blue
-                    out.writeByte((int)(col.getG() * 255)); // Green
-                    out.writeByte((int)(col.getR() * 255)); // Red
+                    float3 col = image[x][y];
+                    out.writeByte((int)(col.x * 255)); // Blue
+                    out.writeByte((int)(col.y * 255)); // Green
+                    out.writeByte((int)(col.z * 255)); // Red
                 }
 
                 // Row padding
@@ -95,10 +71,11 @@ public class BMPWriter {
     }
 
     public static void main(String[] args) throws IOException {
-        int width = 64;
-        int height = 64;
-        Float3[][] image = createTestImage(width, height);
+        int width = 64, height = 64;
+
+        float3[][] image = createTestImage(width, height);
+
         writeImageToBMP(image, "test_image");
-        System.out.println("BMP image written to test_image.bmp");
+        //System.out.println("BMP image written to test_image.bmp");
     }
 }
