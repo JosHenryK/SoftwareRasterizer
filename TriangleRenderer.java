@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class TriangleRenderer {
+public class triangleRenderer {
     public static float dot(float2 a, float2 b) {
         return (a.x * b.x) + (a.y * b.y);
     }
@@ -16,7 +16,7 @@ public class TriangleRenderer {
     }
 
     public static boolean pointInTriangle(float2 a, float2 b, float2 c, float2 p) {
-        return (pointOnRightSideOfLine(a, b, p) && pointOnRightSideOfLine(b, c, p) && pointOnRightSideOfLine(c, a, p));
+        return (pointOnRightSideOfLine(a, b, p) && pointOnRightSideOfLine(b, c, p) && pointOnRightSideOfLine(c, a, p)) || (!pointOnRightSideOfLine(a, b, p) && !pointOnRightSideOfLine(b, c, p) && !pointOnRightSideOfLine(c, a, p));
     }
 
     public static float2 projectToScreen(float3 a) {
@@ -29,7 +29,7 @@ public class TriangleRenderer {
             for (int y = 0 ; y < image[0].length ; y++) {
                 float z = 0;
                 float3 p = new float3(x, y , z);
-                boolean inside = TriangleRenderer.pointInTriangle(projectToScreen(tri.a) , projectToScreen(tri.b) , projectToScreen(tri.c), projectToScreen(p));
+                boolean inside = triangleRenderer.pointInTriangle(projectToScreen(tri.a) , projectToScreen(tri.b) , projectToScreen(tri.c), projectToScreen(p));
                 if (inside) {
                     image[x][y] = color;
                 } else {

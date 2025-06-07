@@ -3,18 +3,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class BMPWriter {
-    public static float3[][] createTestImage(int width, int height) {
-        float3[][] image = new float3[width][height];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                float r = x / (float)(width - 1);
-                float g = y / (float)(height - 1);
-                image[x][y] = new float3(r, g, 0f);
-            }
-        }
-        return image;
-    }
-
     public static void writeImageToBMP(float3[][] image, String filename) throws IOException {
         int width = image.length;
         int height = image[0].length;
